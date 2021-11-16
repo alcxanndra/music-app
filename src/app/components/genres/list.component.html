@@ -1,0 +1,49 @@
+<h1 class="display-1">Genres</h1>
+<p>Listen to your <strong>favourite genres</strong> from the hottest <strong>trending artists</strong>.</p>
+
+<div class="add-option">
+<button routerLink="add" class="btn btn-primary btn-round">
+    <i class="tim-icons icon-simple-add"></i> Add Genre
+</button>
+</div>
+
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- loop over the collection of genres -->
+                <div *ngFor="let tempGenre of genres" class="col-md-3">
+                    <div class="card border-0 shadow">
+                            <img src="{{ tempGenre.imageUrl }}" style="width:100%;" class="card-img-top img-fluid shadow">
+                        <div class="card-body text-center" style="height:170px;">
+
+                            <a routerLink="/genres/{{ tempGenre.id }}">
+                                <h3 class="card-title mb-0" style="height:70px;">{{ tempGenre.name }}</h3>
+                            </a>
+
+
+                            <div style="white-space: nowrap">
+                                <a routerLink="edit/{{tempGenre.id}}" class="btn btn-sm btn-primary mr-1">
+                                    <i class="tim-icons icon-pencil"></i>
+                                    Edit
+                                </a>
+                                <button (click)="deleteGenre(tempGenre.id)" class="btn btn-sm btn-danger btn-delete-genre">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                    Delete
+                                </button>
+
+                            </div>
+                        </div>
+                      </div>
+                </div>
+
+                <!-- if genres empty then display a message-->
+                <div *ngIf="genres?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No genres found.
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

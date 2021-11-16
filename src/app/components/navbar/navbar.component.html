@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-transparent">
+    <div class="container">
+      <a class="navbar-brand" href="#">Musify</a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/songs" *ngIf="getLoggedIn() === true">Songs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/artists" *ngIf="getLoggedIn() === true">Artists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/genres" *ngIf="getLoggedIn() === true">Genres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/producers" *ngIf="getLoggedIn() === true">Producers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/discover" *ngIf="getLoggedIn() === false">Discover <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" *ngIf="getLoggedIn() === false">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register" *ngIf="getLoggedIn() === false">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="logout()" class="nav-link" routerLink="/" *ngIf="getLoggedIn() === true">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

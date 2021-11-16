@@ -1,0 +1,19 @@
+h1, p {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 100px;
+}
+
+.add-option {
+    width: 20%;
+    margin-left: auto;
+    margin-bottom: 50px;
+}
+
+.card-img-top {
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to right, darkblue, darkorchid) 1;
+}

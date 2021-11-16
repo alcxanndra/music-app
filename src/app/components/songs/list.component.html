@@ -1,0 +1,64 @@
+<h1 class="display-1">Songs</h1>
+<p>Listen to your <strong>favourite songs</strong> from the hottest <strong>trending artists</strong>.</p>
+
+<div class="add-option">
+<button routerLink="add" class="btn btn-primary btn-round">
+    <i class="tim-icons icon-simple-add"></i> Add Song
+</button>
+</div>
+
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- loop over the collection of songs -->
+                <div *ngFor="let tempSong of songs" class="col-md-3">
+                    <div class="card border-0 shadow">
+                            <img src="{{ tempSong.imageUrl }}" style="width:100%;" class="card-img-top img-fluid shadow">
+                        <div class="card-body text-center" style="height:170px;">
+
+                            <a routerLink="/songs/{{ tempSong.id }}">
+                                <h3 class="card-title mb-0" style="height:70px;">{{ tempSong.title }}</h3>
+                            </a>
+                                <strong>Album:</strong> {{tempSong.songDetails.album.title}}
+                                
+                            <div class="card-text">
+                                <a routerLink="/artists/{{ tempSong.artist.id }}">
+                                    {{ tempSong.artist.name }}
+                                </a>
+                            </div>
+
+
+                            <div style="white-space: nowrap">
+                                <a routerLink="edit/{{tempSong.id}}" class="btn btn-sm btn-primary mr-1">
+                                    <i class="tim-icons icon-pencil"></i></a>
+                                <button (click)="playStream(tempSong.id)" [disabled]="state?.error" *ngIf="!state?.playing || (state?.playing && currentPlaying !== tempSong.id)" class="btn btn-sm btn-play-song">
+                                    <i class="tim-icons icon-triangle-right-17" *ngIf="currentPlaying !== tempSong.id"></i>
+                                    <i class="tim-icons icon-refresh-01" *ngIf="!state?.playing && paused === true && currentPlaying === tempSong.id"></i>
+
+                                </button>
+                                <button (click)="pause()" *ngIf="state?.playing && currentPlaying === tempSong.id" class="btn btn-sm btn-pause-song">
+                                    <i class="tim-icons icon-button-pause"></i> Pause
+                                </button>
+                                <button (click)="play()" *ngIf="!state?.playing && paused === true && currentPlaying === tempSong.id" class="btn btn-sm btn-pause-song">
+                                <i class="tim-icons icon-triangle-right-17"></i>
+                                </button>
+                                <button (click)="deleteSong(tempSong.id)" class="btn btn-sm btn-danger btn-delete-song">
+                                    <i class="tim-icons icon-trash-simple"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                      </div>
+                </div>
+
+                <!-- if songs empty then display a message-->
+                <div *ngIf="songs?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No songs found.
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

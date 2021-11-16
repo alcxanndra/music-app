@@ -1,0 +1,16 @@
+#discover-image {
+    width: 100%;
+}
+
+.main-content {
+    font-size: 30px;
+    margin: auto;
+    width: 30%;
+    align-content: center;
+}
+
+.btn {
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 50%;
+}
