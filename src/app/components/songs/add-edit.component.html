@@ -12,7 +12,7 @@
         <div class="form-group col-5">
             <label>Artist</label>
             <select formControlName="artist" class="form-control" [value]="currentArtist" [ngClass]="{ 'is-invalid': submitted && f['artist'].errors }">
-                <option *ngFor="let artist of artistList" [value]="artist.name">
+                <option class="dropdown-item" *ngFor="let artist of artistList" [value]="artist.name">
                     {{artist.name}}
                 </option>
             </select>
@@ -23,7 +23,7 @@
         <div class="form-group col-5">
             <label>Genre</label>
             <select formControlName="genre" class="form-control" [value]="currentGenre" [ngClass]="{ 'is-invalid': submitted && f['genre'].errors }">
-                <option *ngFor="let genre of genreList" [value]="genre.name">
+                <option class="dropdown-item" *ngFor="let genre of genreList" [value]="genre.name">
                     {{genre.name}}
                 </option>
             </select>
@@ -34,7 +34,7 @@
         <div class="form-group col-5">
             <label>Album</label>
             <select formControlName="album" class="form-control" [value]="currentAlbum" [ngClass]="{ 'is-invalid': submitted && f['album'].errors }">
-                <option *ngFor="let album of albumList" [value]="album['title']">
+                <option class="dropdown-item" *ngFor="let album of albumList" [value]="album['title']">
                     {{album['title']}}
                 </option>
             </select>
@@ -45,7 +45,7 @@
         <div class="form-group col-5">
             <label>Producer</label>
             <select formControlName="producer" class="form-control" [value]="currentProducer" [ngClass]="{ 'is-invalid': submitted && f['producer'].errors }">
-                <option *ngFor="let producer of producerList" [value]="producer.name">
+                <option class="dropdown-item" *ngFor="let producer of producerList" [value]="producer.name">
                     {{producer.name}}
                 </option>
             </select>            <div *ngIf="submitted && f['producer'].errors" class="invalid-feedback">

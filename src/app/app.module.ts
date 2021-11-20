@@ -8,10 +8,13 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DiscoverComponent } from './components/discover/discover.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { ModalModule } from 'angular-bootstrap-md';
+import { AuthGuard } from './guards/auth.guard'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';    
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,7 @@ import { ModalModule } from 'angular-bootstrap-md';
     HttpClientModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

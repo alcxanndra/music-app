@@ -17,7 +17,11 @@
                   <h4 class="card-title">Register</h4>
                 </div>
                 <div class="card-body">
-                  <form class="form" #signUpForm="ngForm" (ngSubmit)="onAddUser(signUpForm)">
+                  <form class="form"
+                  name="form"
+                  (ngSubmit)="f.form.valid && onSubmit()"
+                  #f="ngForm"
+                  novalidate>
                     <div
                       class="input-group"
                     >
@@ -27,11 +31,21 @@
                         </div>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="Username"
-                        type="text"
-                        ngModel name="username"
-                      />
+                      type="username"
+                      placeholder="Username"
+                      class="form-control"
+                      name="username"
+                      [(ngModel)]="form.username"
+                      required
+                      minlength="6"
+                      #username="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                      <div *ngIf="username.errors['required']">Username is required</div>
+                      <div *ngIf="username.errors['minlength']">
+                        Username must be at least 6 characters
+                      </div>
+                    </div>
                     </div>
                     <div
                       class="input-group"
@@ -42,11 +56,21 @@
                         </div>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="Email"
-                        type="text"
-                        ngModel name="email"
-                      />
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      placeholder="Email"
+                      [(ngModel)]="form['email']"
+                      required
+                      email
+                      #email="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                      <div *ngIf="email.errors['required']">Email is required</div>
+                      <div *ngIf="email.errors['email']">
+                        Email must be a valid email address
+                      </div>
+                    </div>
                     </div>
                     <div
                       class="input-group"
@@ -57,33 +81,21 @@
                         </div>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="Password"
-                        type="text"
-                        ngModel name="password"
-                      />
-                    </div>
-                    <div
-                    class="input-group"
-                  >
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <i class="tim-icons icon-lock-circle"> </i>
+                      type="password"
+                      placeholder="Password"
+                      class="form-control"
+                      name="password"
+                      [(ngModel)]="form.password"
+                      required
+                      minlength="6"
+                      #password="ngModel"
+                    />
+                    <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                      <div *ngIf="password.errors['required']">Password is required</div>
+                      <div *ngIf="password.errors['minlength']">
+                        Password must be at least 6 characters
                       </div>
                     </div>
-                    <input
-                      class="form-control"
-                      placeholder="Confirm Password"
-                      type="text"
-                    />
-                  </div>
-                    <div class="form-check text-left">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" />
-  
-                        <span class="form-check-sign"> </span> I agree to the
-                        <a href="javascript:void(0)"> terms and conditions </a> .
-                      </label>
                     </div>
                     <div class="card-footer">
                       <button

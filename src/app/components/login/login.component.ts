@@ -1,10 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { User } from 'src/app/entities/user';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +10,43 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
-  public getUser(signInForm: NgForm): void {
-    this.userService.getUserById(1).subscribe(
-      (response: User) => {
-        console.log(response);
+  onSubmit(): void {
+    const { username, password } = this.form;
+
+    this.authService.login(username, password).subscribe(
+      (      data: { accessToken: any; }) => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
         AppComponent.loggedIn = true;
         this.router.navigate(['/songs']);
+
       },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+      (      err: { error: { message: string; }; }) => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
       }
     );
-    }
-
+  }
 }

@@ -9,8 +9,4 @@ export class AppComponent {
   title = 'musify-app';
 
   public static loggedIn = false;
-
-  public login(){
-    AppComponent.loggedIn = true;
-  }
 }

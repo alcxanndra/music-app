@@ -18,7 +18,12 @@
                 <h4 class="card-title">Login</h4>
               </div>
               <div class="card-body">
-                <form class="form" #signInForm="ngForm" (ngSubmit)="getUser(signInForm)">
+                <form class="form"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate
+                >
                   <div
                     class="input-group"
                   >
@@ -28,12 +33,18 @@
                       </div>
                     </div>
                     <input
-                      class="form-control"
-                      placeholder="Username"
-                      type="text"
-                      ngModel name="username" 
-                      id="username"
-                    />
+                    type="username"
+                    placeholder="Username"
+                    class="form-control"
+                    name="username"
+                    [(ngModel)]="form.username"
+                    required
+                    minlength="6"
+                    #username="ngModel"
+                  />
+                  <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                    <div *ngIf="username.errors['required']">Please enter your username</div>
+                  </div>
                   </div>
                   <div
                     class="input-group"
@@ -44,12 +55,18 @@
                       </div>
                     </div>
                     <input
-                      class="form-control"
-                      placeholder="Password"
-                      type="text"
-                      ngModel name="password" 
-                      id="password"
-                    />
+                    type="password"
+                    placeholder="Password"
+                    class="form-control"
+                    name="password"
+                    [(ngModel)]="form.password"
+                    required
+                    minlength="6"
+                    #password="ngModel"
+                  />
+                  <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']">Please enter your password</div>
+                  </div>
                   </div>
               <div class="card-footer">
                   <button 
