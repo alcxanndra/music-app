@@ -15,11 +15,11 @@ export class NavbarComponent implements OnInit {
   }
 
   public getLoggedIn(){
-    return AppComponent.loggedIn;
+    return localStorage.getItem('token') !== null;
   }
 
   public logout(){
-    AppComponent.loggedIn = false;
+    this.authService.logout();
   }
 
 }

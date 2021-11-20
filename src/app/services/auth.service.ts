@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const AUTH_API = 'http://localhost:8080/';
+
+const jwtHelper = new JwtHelperService();
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,14 +17,14 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
+  public login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'login', {
       username,
       password
     }, httpOptions);
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
+  public register(username: string, email: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'register', {
       username,
       email,
@@ -29,8 +32,15 @@ export class AuthService {
     }, httpOptions);
   }
 
-  logout() :void {    
-    localStorage.setItem('isLoggedIn','false');    
-    localStorage.removeItem('token');    
-    }    
+  public logout() :void {    
+    localStorage.clear(); 
+  }    
+
+  public isAuthenticated(): boolean {
+      const token = localStorage.getItem('token');
+      if (token){
+        return !jwtHelper.isTokenExpired(token);
+      }
+      return false;
+  }
 }

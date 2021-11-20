@@ -17,11 +17,7 @@
                   <h4 class="card-title">Register</h4>
                 </div>
                 <div class="card-body">
-                  <form class="form"
-                  name="form"
-                  (ngSubmit)="f.form.valid && onSubmit()"
-                  #f="ngForm"
-                  novalidate>
+                  <form [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div
                       class="input-group"
                     >
@@ -30,22 +26,11 @@
                           <i class="tim-icons icon-single-02"> </i>
                         </div>
                       </div>
-                      <input
-                      type="username"
-                      placeholder="Username"
-                      class="form-control"
-                      name="username"
-                      [(ngModel)]="form.username"
-                      required
-                      minlength="6"
-                      #username="ngModel"
-                    />
-                    <div class="alert-danger" *ngIf="username.errors && f.submitted">
-                      <div *ngIf="username.errors['required']">Username is required</div>
-                      <div *ngIf="username.errors['minlength']">
-                        Username must be at least 6 characters
+                      <input type="text" placeholder="Username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+                      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                          <div *ngIf="f['username'].errors['required']">Username is required</div>
+                          <div *ngIf="f['username'].errors['minlength']">Username must be at least 6 characters</div>
                       </div>
-                    </div>
                     </div>
                     <div
                       class="input-group"
@@ -55,23 +40,29 @@
                           <i class="tim-icons icon-email-85"> </i>
                         </div>
                       </div>
-                      <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      placeholder="Email"
-                      [(ngModel)]="form['email']"
-                      required
-                      email
-                      #email="ngModel"
-                    />
-                    <div class="alert-danger" *ngIf="email.errors && f.submitted">
-                      <div *ngIf="email.errors['required']">Email is required</div>
-                      <div *ngIf="email.errors['email']">
-                        Email must be a valid email address
+                      <input type="text" placeholder="Email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                      <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                          <div *ngIf="f['email'].errors['required']">Email is required</div>
+                          <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
                       </div>
                     </div>
+
+                  <div
+                    class="input-group"
+                  >
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-lock-circle"> </i>
+                      </div>
                     </div>
+                    <input type="password" placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                        <div *ngIf="f['password'].errors['required']">Password is required</div>
+                        <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+                    </div>
+                  </div>
+
+
                     <div
                       class="input-group"
                     >
@@ -80,22 +71,11 @@
                           <i class="tim-icons icon-lock-circle"> </i>
                         </div>
                       </div>
-                      <input
-                      type="password"
-                      placeholder="Password"
-                      class="form-control"
-                      name="password"
-                      [(ngModel)]="form.password"
-                      required
-                      minlength="6"
-                      #password="ngModel"
-                    />
-                    <div class="alert-danger" *ngIf="password.errors && f.submitted">
-                      <div *ngIf="password.errors['required']">Password is required</div>
-                      <div *ngIf="password.errors['minlength']">
-                        Password must be at least 6 characters
+                      <input type="password" placeholder="Confirm Password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }" />
+                      <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                          <div *ngIf="f['confirmPassword'].errors['required']">Confirm Password is required</div>
+                          <div *ngIf="f['confirmPassword'].errors['mustMatch']">Passwords must match</div>
                       </div>
-                    </div>
                     </div>
                     <div class="card-footer">
                       <button

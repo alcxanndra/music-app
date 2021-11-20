@@ -31,6 +31,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ModalModule.forRoot()
   ],
   providers: [AuthGuard, authInterceptorProviders],
