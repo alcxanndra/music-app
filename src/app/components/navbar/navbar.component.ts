@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user') || '{}')['username'];
-    console.log(Object.keys(this.currentUser));
   }
 
   public getLoggedIn(){
@@ -24,7 +23,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public getUser(){
-    return localStorage.getItem('token') !== null;
+    return this.currentUser;
   }
 
   public logout(){

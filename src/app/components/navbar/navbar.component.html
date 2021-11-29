@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent">
     <div class="container">
-      <a class="navbar-brand" href="/">Musify</a>
+      <a class="navbar-brand" href="/home" *ngIf="getLoggedIn() === true">Home</a>
+      <a class="navbar-brand" href="/" *ngIf="getLoggedIn() === false">Musify</a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="nav ml-auto">
           <li class="nav-item">
@@ -22,6 +23,7 @@
             <a class="nav-link" routerLink="/login" *ngIf="getLoggedIn() === false">Sign In</a>
           </li>
           <li class="nav-item">
+            <div class="dropdown-container">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="getLoggedIn() === true">
               <i class="tim-icons icon-spaceship"> </i> 
               Welcome, {{ currentUser }}
@@ -30,15 +32,10 @@
               <a class="dropdown-item" href="#" routerLink="/profile">My profile</a>
               <a class="dropdown-item" href="#" (click)="logout()" routerLink="/" >Log out</a>
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/profile" *ngIf="getLoggedIn() === true">My profile</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/register" *ngIf="getLoggedIn() === false">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a (click)="logout()" class="nav-link" routerLink="/" *ngIf="getLoggedIn() === true">Sign Out</a>
           </li>
         </ul>
       </div>
