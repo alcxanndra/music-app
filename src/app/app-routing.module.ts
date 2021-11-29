@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const songsModule = () => import('./components/songs/songs.module').then(x => x.SongsModule);
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'songs', loadChildren: songsModule,  canActivate : [AuthGuard] },
   { path: 'producers', loadChildren: producersModule, canActivate : [AuthGuard] },
   { path: 'artists', loadChildren: artistsModule, canActivate : [AuthGuard] },
-  { path: 'genres', loadChildren: genresModule, canActivate : [AuthGuard] }
+  { path: 'genres', loadChildren: genresModule, canActivate : [AuthGuard] },
+  { path: 'profile', component: UserProfileComponent },
 ];
 
 @NgModule({

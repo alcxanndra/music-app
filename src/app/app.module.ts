@@ -14,7 +14,7 @@ import { ModalModule } from 'angular-bootstrap-md';
 import { AuthGuard } from './guards/auth.guard'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';    
 import { authInterceptorProviders } from './helpers/auth.interceptor';
-
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     LoginComponent,
     RegisterComponent,
     DiscoverComponent,
-    HomeComponent
+    HomeComponent,
+    UserProfileComponent
       ],
   imports: [
     BrowserModule,
