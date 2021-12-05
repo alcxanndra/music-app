@@ -5,7 +5,7 @@
       </div>
 
       <div class="right-button">
-        <a *ngIf="!isEditMode" routerLink="edit/{{id}}" class="btn btn-primary mr-1" id="edit-button">
+        <a *ngIf="!isEditMode" (click)="setToEditMode()" routerLink="edit/{{id}}" class="btn btn-primary mr-1" id="edit-button">
           <i class="tim-icons icon-pencil"></i>
           Edit
         </a>
@@ -27,7 +27,7 @@
     <div class="column-two">
       <div class="form-group col-9">
         <label>Name</label>
-        <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+        <input type="text" [attr.disabled]="!isEditMode ? '' : null" id="name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
         <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
             <div *ngIf="f['name'].errors['required']">Name is required</div>
         </div>
@@ -37,7 +37,7 @@
 
       <div class="form-group col-9">
         <label>Description</label>
-        <input type="text" id="description" placeholder="Make us curious about yourself..." formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" />
+        <input type="text" [attr.disabled]="!isEditMode ? '' : null" id="description" placeholder="Make us curious about yourself..." formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" />
         <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
         </div>
       </div>
@@ -46,7 +46,7 @@
 
       <div class="form-group col-9">
         <label>URL</label>
-        <input type="text" id="url" placeholder="A personal URL you brag with?" formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['url'].errors }" />
+        <input type="text" [attr.disabled]="!isEditMode ? '' : null" id="url" placeholder="A personal URL you brag with?" formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['url'].errors }" />
         <div *ngIf="submitted && f['url'].errors" class="invalid-feedback">
         </div>
       </div>
@@ -55,7 +55,7 @@
 
       <div class="form-group col-9">
         <label>Location</label>
-        <input type="text" id="location" placeholder="Where can we find you?" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['location'].errors }" />
+        <input type="text" [attr.disabled]="!isEditMode ? '' : null" id="location" placeholder="Where can we find you?" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['location'].errors }" />
         <div *ngIf="submitted && f['location'].errors" class="invalid-feedback">
         </div>
       </div>

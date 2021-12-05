@@ -36,3 +36,8 @@
 .right-button {
     margin-right: 200px;
 }
+
+input[type="text"]:disabled {
+    background: transparent;
+    color: white;
+}

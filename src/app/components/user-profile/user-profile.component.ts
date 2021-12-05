@@ -69,6 +69,10 @@ export class UserProfileComponent implements OnInit {
       this.updateUser();
   }
 
+  public setToEditMode(){
+    this.isEditMode = true;
+  }
+
   private updateUser() {
       this.userService.updateUser(this.form.value, this.id)
           .pipe(first())
