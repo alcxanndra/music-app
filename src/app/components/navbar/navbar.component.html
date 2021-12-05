@@ -28,7 +28,7 @@
               <i class="tim-icons icon-spaceship"> </i> 
               Welcome, {{ currentUser }}
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="menu-expanded">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="menu-expanded" *ngIf="getLoggedIn() === true">
               <a class="dropdown-item" href="#" routerLink="/profile">My profile</a>
               <a class="dropdown-item" href="#" (click)="logout()" routerLink="/" >Log out</a>
             </div>
