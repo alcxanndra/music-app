@@ -1,8 +1,18 @@
-h1 {
+#main-content {
+    margin-top: 50px;
     margin-left: 250px;
+    width: 80%;
+}
+
+
+#welcome-paragraph {
     margin-top: 50px;
 }
 
-#central {
-    margin-left: 250px;
+#welcome-message, #welcome-paragraph, #home-content {
+    margin-left: auto;
+}
+
+#nav-line {
+    margin: auto;
 }

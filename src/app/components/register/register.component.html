@@ -19,6 +19,19 @@
                 <div class="card-body">
                   <form [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div
+                    class="input-group"
+                  >
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-single-02"> </i>
+                      </div>
+                    </div>
+                    <input type="text" placeholder="Full Name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
+                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Name is required</div>
+                    </div>
+                  </div>
+                    <div
                       class="input-group"
                     >
                       <div class="input-group-prepend">

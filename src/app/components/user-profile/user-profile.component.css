@@ -1,0 +1,33 @@
+#profile-form {
+    margin-top: 50px;
+    margin-left: 250px;
+    width: 80%;
+}
+
+
+#edit-button {
+    margin-left: 950px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+  }
+
+.header .profile-picture {
+    width: 200px;
+    height: 50px;
+    border-radius: 4px;
+  }
+
+.header .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+  }
+
+/* header h3, header h4 {
+    display: flex;
+    margin: 0;
+  } */

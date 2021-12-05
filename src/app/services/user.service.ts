@@ -37,6 +37,11 @@ export class UserService {
       return this.http.put<User>(`${this.apiServerUrl}/${userId}`, updatedUser);
     }
 
+    public updateUsername(newUsername: string, userId: number): Observable<User> {
+      return this.http.patch<User>(`${this.apiServerUrl}/${userId}`, newUsername);
+    }
+
+
     public getUserSavedSongs(userId: number): Observable<Song[]> {
       return this.http.get<Song[]>(`${this.apiServerUrl}/${userId}/savedSongs`);
     }

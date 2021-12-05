@@ -91,19 +91,19 @@ export class AddEditComponent implements OnInit {
                 this.genreList = Object.values(Object.values(genres)[0])[0]
             });
 
-            this.songDetailsService.getSongDetailsBySongId(this.id)
-                .pipe(first())
-                .subscribe(songDetails => {
-                    this.songDetails = songDetails;
-                    console.log(this.songDetails);
-                    console.log(this.songDetails.genre);
-                    console.log(this.songDetails.producer);
-                    this.currentArtist = this.songDetails.song.artist.name;
-                    this.currentGenre = this.songDetails.genre.name;
-                    this.currentProducer = this.songDetails.producer.name;
-                    this.currentAlbum = this.songDetails.album.title;
-                });
-            }
+        this.songDetailsService.getSongDetailsBySongId(this.id)
+            .pipe(first())
+            .subscribe(songDetails => {
+                this.songDetails = songDetails;
+                console.log(this.songDetails);
+                console.log(this.songDetails.genre);
+                console.log(this.songDetails.producer);
+                this.currentArtist = this.songDetails.song.artist.name;
+                this.currentGenre = this.songDetails.genre.name;
+                this.currentProducer = this.songDetails.producer.name;
+                this.currentAlbum = this.songDetails.album.title;
+            });
+        }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }

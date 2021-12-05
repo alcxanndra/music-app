@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { User } from 'src/app/entities/user';
@@ -19,10 +20,12 @@ export class NavbarComponent implements OnInit {
   }
 
   public getLoggedIn(){
+    this.getUser();
     return localStorage.getItem('token') !== null;
   }
 
   public getUser(){
+    this.currentUser = JSON.parse(localStorage.getItem('user') || '{}')['username'];
     return this.currentUser;
   }
 

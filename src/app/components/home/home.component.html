@@ -1,13 +1,47 @@
-<h1 class="display-1">
-        Welcome, {{currentUser}}
-</h1>
+<div id="main-content">
+<div id="welcome-message">
+    <h1 class="display-1">
+            Welcome, @{{currentUser}}!
+    </h1>
+</div>
 
-<div id="central">
+<div class="row" id="nav-line">
+    <div class="col-sm-3 col-6">
+        <small class="d-block text-uppercase font-weight-bold mb-4">
+            <a routerLink="/songs">Songs</a>
+        </small>
+        <img alt="Rounded image" class="img-fluid rounded shadow" src="assets/img/ryan.jpg" style="width: 150px;">
+    </div>
+    <div class="col-sm-3 col-6">
+        <small class="d-block text-uppercase font-weight-bold mb-4">
+            <a routerLink="/artists">Artists</a>
+        </small>
+        <img alt="Circle image" class="img-fluid rounded-circle shadow" src="assets/img/james.jpg" style="width: 150px;">
+    </div>
+    <div class="col-sm-3 col-6 mt-5 mt-sm-0">
+        <small class="d-block text-uppercase font-weight-bold mb-4">
+            <a routerLink="/genres">Genres</a>
+         </small>
+         <img alt="Raised image" class="img-fluid rounded shadow-lg" src="assets/img/lora.jpg" style="width: 150px;">
+    </div>
+    <div class="col-sm-3 col-6 mt-5 mt-sm-0">
+        <small class="d-block text-uppercase font-weight-bold mb-4">
+            <a routerLink="/producers">Producers</a>
+        </small>
+        <img alt="Raised circle image" class="img-fluid rounded-circle shadow-lg" src="assets/img/mike.jpg" style="width: 150px;">
+    </div>
+</div>
+
+<div id="welcome-paragraph">
     <h4>
-        How do you fancy having some fun next?
+        How do you fancy having fun next? 
     </h4>
+</div>
+
+<div id="home-content">
     <br>
     <button class="btn btn-primary btn-lg btn-neutral">
         <i class="tim-icons icon-headphones"></i> Create new playlist
     </button>
+</div>
 </div>

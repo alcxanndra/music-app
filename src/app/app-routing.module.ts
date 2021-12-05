@@ -18,12 +18,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'discover', component: DiscoverComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'songs', loadChildren: songsModule,  canActivate : [AuthGuard] },
   { path: 'producers', loadChildren: producersModule, canActivate : [AuthGuard] },
   { path: 'artists', loadChildren: artistsModule, canActivate : [AuthGuard] },
   { path: 'genres', loadChildren: genresModule, canActivate : [AuthGuard] },
-  { path: 'profile', component: UserProfileComponent },
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/edit/:id', component: UserProfileComponent, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({
