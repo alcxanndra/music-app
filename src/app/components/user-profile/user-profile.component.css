@@ -5,29 +5,34 @@
 }
 
 
-#edit-button {
-    margin-left: 950px;
-}
-
 .header {
     display: flex;
     flex-direction: row;
   }
 
-.header .profile-picture {
-    width: 200px;
-    height: 50px;
-    border-radius: 4px;
-  }
+#profile-picture {
+    width: 300px;
+}
 
-.header .form-group {
+.form-row {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 10px;
-  }
+}
+  
+.column-one {
+    flex: 30%;
+}
+.column-two {
+    flex: 70%;
+}
 
-/* header h3, header h4 {
+.header-row {
     display: flex;
-    margin: 0;
-  } */
+}
+
+.left-text {
+    flex: 60%;
+}
+
+.right-button {
+    margin-right: 200px;
+}

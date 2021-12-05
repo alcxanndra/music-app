@@ -1,23 +1,31 @@
 <div id="profile-form">
-    <h1 class="display-1">My profile</h1>
+    <div class=header-row>
+      <div class="left-text">
+      <h1 class="display-1">My profile</h1>
+      </div>
 
-    <a *ngIf="!isEditMode" routerLink="edit/{{id}}" class="btn btn-primary mr-1" id="edit-button">
-      <i class="tim-icons icon-pencil"></i>
-      Edit
-    </a>
+      <div class="right-button">
+        <a *ngIf="!isEditMode" routerLink="edit/{{id}}" class="btn btn-primary mr-1" id="edit-button">
+          <i class="tim-icons icon-pencil"></i>
+          Edit
+        </a>
+      </div>
+  </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="header">
-    <div class="form-group col-3">
-      <img src="{{ profilePicture }}" id="profile-picture" class="card-img-top img-fluid shadow">
+    <div class="form-row">
+    <div class="column-one">
+      <div class="form-group">
+        <img src="{{ profilePicture }}" id="profile-picture" class="card-img-top img-fluid shadow">
+      </div>
+
+      <br>
+      <input type="file" class="file-upload" onchange="console.log(event.target.files)">
     </div>
 
-    <br>
-    <input type="file" class="file-upload" onchange="console.log(event.target.files)">
-    <br><br>
-
-      <div class="form-group col-5">
+    <div class="column-two">
+      <div class="form-group col-9">
         <label>Name</label>
         <input type="text" id="name" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }" />
         <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
@@ -25,28 +33,35 @@
         </div>
       </div>
 
-      <div class="form-group col-5">
+      <br>
+
+      <div class="form-group col-9">
         <label>Description</label>
         <input type="text" id="description" placeholder="Make us curious about yourself..." formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }" />
         <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
         </div>
       </div>
 
-      <div class="form-group col-5">
+      <br> 
+
+      <div class="form-group col-9">
         <label>URL</label>
         <input type="text" id="url" placeholder="A personal URL you brag with?" formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['url'].errors }" />
         <div *ngIf="submitted && f['url'].errors" class="invalid-feedback">
         </div>
       </div>
 
+      <br>
 
-      <div class="form-group col-5">
+      <div class="form-group col-9">
         <label>Location</label>
         <input type="text" id="location" placeholder="Where can we find you?" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['location'].errors }" />
         <div *ngIf="submitted && f['location'].errors" class="invalid-feedback">
         </div>
       </div>
     </div>
+
+  </div>
 
     <br>
     <div class="form-row">
