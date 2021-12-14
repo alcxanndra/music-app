@@ -17,6 +17,13 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
+    public fetchProfileImage(userId: string): Observable<Blob> {
+      let url = `http://localhost:8080/uploads/users/${userId}/profileImage`;
+      console.log("Profile image URL is " + url);
+  
+      return this.http.get(url, { responseType: 'blob' });
+    }
+
     public getAllUsers(): Observable<User[]> {
       return this.http.get<User[]>(`${this.apiServerUrl}`);
     }
@@ -36,11 +43,6 @@ export class UserService {
     public updateUser(updatedUser: User, userId: number): Observable<User> {
       return this.http.put<User>(`${this.apiServerUrl}/${userId}`, updatedUser);
     }
-
-    public updateUsername(newUsername: string, userId: number): Observable<User> {
-      return this.http.patch<User>(`${this.apiServerUrl}/${userId}`, newUsername);
-    }
-
 
     public getUserSavedSongs(userId: number): Observable<Song[]> {
       return this.http.get<Song[]>(`${this.apiServerUrl}/${userId}/savedSongs`);

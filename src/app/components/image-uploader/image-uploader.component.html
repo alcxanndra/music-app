@@ -1,0 +1,16 @@
+<button *ngIf="isEditMode" class="btn btn-warning mr-1" (click)="clickFileInput()">
+    <span *ngIf="!image">
+    <i class="tim-icons icon-upload"></i>
+        Select Image
+    </span>
+    <span *ngIf="image">
+    <i class="tim-icons icon-upload"></i>
+        Change Image
+    </span>
+  </button>
+  <input type="file" id="file-upload" (change)="fileChange(input)" #input />
+  
+  <div class="image-wrapper">
+    <img [attr.src]="image" *ngIf="image" style="width:200px">
+    <img src="/assets/images/users/profile-placeholder.png" *ngIf="!image" style="width:200px">
+  </div>

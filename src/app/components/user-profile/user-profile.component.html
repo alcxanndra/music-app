@@ -16,12 +16,23 @@
 
     <div class="form-row">
     <div class="column-one">
-      <div class="form-group">
-        <img src="{{ profilePicture }}" id="profile-picture" class="card-img-top img-fluid shadow">
+
+      <div *ngIf="imageError" class="errorMessage">
+        <strong class="mat-error">{{imageError}}</strong>
       </div>
 
+      <div>
+        <app-image-uploader [image]="imageToShow" [isEditMode]="isEditMode"
+        (uploadedImage)="onUploadedImage($event)"></app-image-uploader>
+      </div>
       <br>
-      <input type="file" class="file-upload" onchange="console.log(event.target.files)">
+      <div>
+        <button class="btn btn-success mr-1" *ngIf="isEditMode" [disabled]="!currentFileUpload" (click)="upload()">
+        <i class="tim-icons icon-check-2"></i>
+        Upload Image
+        </button>
+      </div>
+
     </div>
 
     <div class="column-two">
@@ -66,11 +77,10 @@
     <br>
     <div class="form-row">
       <div class="form-group">
-        <button *ngIf="isEditMode" [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+        <button class="btn btn-primary mr-1" *ngIf="isEditMode" class="btn btn-primary">
             Save
         </button>
-        <a *ngIf="isEditMode" routerLink="/profile" class="btn btn-warning">Cancel</a>
+        <a *ngIf="isEditMode" routerLink="/profile" class="btn btn-danger">Cancel</a>
       </div>
     </div>
   </form>

@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';    
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     RegisterComponent,
     DiscoverComponent,
     HomeComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ImageUploaderComponent
       ],
   imports: [
     BrowserModule,

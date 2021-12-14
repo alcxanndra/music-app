@@ -1,11 +1,17 @@
+import { HttpEvent, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
+import { UploadedImage } from 'src/app/models/uploaded-image';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UploadFileService } from 'src/app/services/file-upload.service';
+import { ImageService } from 'src/app/services/image.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { UserService } from 'src/app/services/user.service';
+
+const profileImageUploadUrl: string = 'http://localhost:8080/uploads/users';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,6 +26,11 @@ export class UserProfileComponent implements OnInit {
   isEditMode = false;
   loading = false;
   submitted = false;
+  currentFileUpload!: any;
+  changeImage = false;
+  clicked: boolean = false;
+  imageError!: string;
+  imageToShow: any;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -28,7 +39,9 @@ export class UserProfileComponent implements OnInit {
       private userService: UserService,
       private alertService: AlertService,
       private authService: AuthService,
-      private tokenStorage: TokenStorageService
+      private tokenStorage: TokenStorageService,
+      private uploadService: UploadFileService,
+      private imageService: ImageService
   ) {}
 
   ngOnInit() {
@@ -49,8 +62,73 @@ export class UserProfileComponent implements OnInit {
                   this.profilePicture = x.profilePicture || '/assets/images/users/profile-placeholder.png';
               }
               );
-      }
 
+      this.userService.fetchProfileImage(this.id.toString())
+      .subscribe(image => this.createImage(image),
+        err => this.handleImageRetrievalError(err));
+
+    }
+
+    private handleImageRetrievalError(err: Error) {
+        console.error(err);
+        this.alertService.error("Problem retrieving profile photo.");
+    }
+
+    private createImage(image: Blob) {
+        if (image && image.size > 0) {
+          let reader = new FileReader();
+    
+          reader.addEventListener("load", () => {
+            this.imageToShow = reader.result;
+          }, false);
+    
+          reader.readAsDataURL(image);
+        } 
+    }
+      
+
+    change($event: any) {
+        this.changeImage = true;
+    }
+
+    upload() {
+        this.clicked = true;
+
+        let uploadUrl = `${profileImageUploadUrl}/${this.id}/profileImage`;
+        this.uploadService.pushFileToStorage(this.currentFileUpload.file, uploadUrl)
+            .subscribe(event => this.handleEvent(event),
+                err => this.handleError(err));
+    }
+
+    handleEvent(event: HttpEvent<{}>) {
+        if (event instanceof HttpResponse) {
+            let body = event.body;
+            this.handleResponse(body);
+        }
+
+        this.currentFileUpload = undefined;
+    }
+
+    handleResponse(data: any) {
+        console.log(data);
+        this.currentFileUpload = undefined;
+        this.clicked = false;
+    }
+
+    handleError(err: Error) {
+      console.error("Error is", err);
+      this.imageError = err.message;
+      this.clicked = false;
+    }
+
+    onUploadedImage(image: UploadedImage) {
+        this.imageError = this.imageService.validateImage(image);
+
+        if (!this.imageError) {
+            this.currentFileUpload = image;
+        }
+    }
+      
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
