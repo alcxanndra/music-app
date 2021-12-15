@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
   form!: FormGroup;
   id!: number;
   profilePicture!: string;
-  isEditMode = false;
+  isEditMode!: boolean;
   loading = false;
   submitted = false;
   currentFileUpload!: any;
@@ -66,6 +66,8 @@ export class UserProfileComponent implements OnInit {
       this.userService.fetchProfileImage(this.id.toString())
       .subscribe(image => this.createImage(image),
         err => this.handleImageRetrievalError(err));
+
+    console.log("Edit mode: " + this.isEditMode);
 
     }
 
@@ -144,14 +146,14 @@ export class UserProfileComponent implements OnInit {
       }
 
       this.loading = true;
-      this.updateUser();
+    //   this.updateUser();
   }
 
   public setToEditMode(){
     this.isEditMode = true;
   }
 
-  private updateUser() {
+  public updateUser() {
       this.userService.updateUser(this.form.value, this.id)
           .pipe(first())
           .subscribe({
@@ -163,6 +165,7 @@ export class UserProfileComponent implements OnInit {
                 console.log(localStorage.getItem('user'));
                 localStorage.removeItem('user');
                 localStorage.setItem('user', JSON.stringify(data));
+                this.router.navigate(['../../'], { relativeTo: this.route });
 
               },
               error: error => {

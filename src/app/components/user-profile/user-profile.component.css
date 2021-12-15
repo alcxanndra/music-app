@@ -41,3 +41,7 @@ input[type="text"]:disabled {
     background: transparent;
     color: white;
 }
+
+#save-cancel {
+    margin-left: 70%;
+}
