@@ -3,7 +3,7 @@ import { SongDetails } from "./songdetails";
 export class Producer{
     id: number;
     name: string;
-    imageUrl: string;
+    imageUrl: string  | ArrayBuffer;
     songDetails: SongDetails[];
 
   constructor(id: number, name: string, imageUrl: string, songDetails: SongDetails[]) {

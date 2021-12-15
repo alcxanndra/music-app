@@ -14,6 +14,13 @@ export class GenreService {
 
   constructor(private http: HttpClient) { }
 
+  public fetchImage(genreId: string): Observable<Blob> {
+    let url = `http://localhost:8080/uploads/genres/${genreId}`;
+    console.log("Genre image URL is " + url);
+
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
   public getAllGenres(): Observable<Genre[]> {
     return this.http.get<Genre[]>(`${this.apiServerUrl}`);
   }

@@ -15,7 +15,7 @@
                 <!-- loop over the collection of genres -->
                 <div *ngFor="let tempGenre of genres" class="col-md-3">
                     <div class="card border-0 shadow">
-                            <img src="{{ tempGenre.imageUrl }}" style="width:100%;" class="card-img-top img-fluid shadow">
+                            <img src="{{ tempGenre.imageUrl }}" style="width:250px;height:250px" class="card-img-top img-fluid shadow">
                         <div class="card-body text-center" style="height:170px;">
 
                             <a routerLink="/genres/{{ tempGenre.id }}">

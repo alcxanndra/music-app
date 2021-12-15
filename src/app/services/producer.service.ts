@@ -14,6 +14,13 @@ export class ProducerService {
 
   constructor(private http: HttpClient) { }
 
+  public fetchImage(producerId: string): Observable<Blob> {
+    let url = `http://localhost:8080/uploads/producers/${producerId}`;
+    console.log("Producer image URL is " + url);
+
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
   public getAllProducers(): Observable<Producer[]> {
     return this.http.get<Producer[]>(`${this.apiServerUrl}`);
   }

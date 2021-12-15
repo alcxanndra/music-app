@@ -4,7 +4,7 @@ import { SongDetails } from "./songdetails";
 export class Song{
     id: number;
     title: string;
-    imageUrl: string;
+    imageUrl: string | ArrayBuffer;
     artist: Artist;
     songDetails: SongDetails;
     songUrl: string;
