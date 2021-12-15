@@ -15,6 +15,13 @@ export class ArtistService {
 
   constructor(private http: HttpClient) { }
 
+  public fetchImage(artistId: string): Observable<Blob> {
+    let url = `http://localhost:8080/uploads/artists/${artistId}`;
+    console.log("Artist image URL is " + url);
+
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
   public getAllArtists(): Observable<Artist[]> {
     return this.http.get<Artist[]>(`${this.apiServerUrl}`);
   }

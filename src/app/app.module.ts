@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { ImageUploaderComponent } from './components/image-uploader/image-uploader.component';
+import { ImageUploaderModule } from './components/image-uploader/image-uploader.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,7 @@ import { ImageUploaderComponent } from './components/image-uploader/image-upload
     RegisterComponent,
     DiscoverComponent,
     HomeComponent,
-    UserProfileComponent,
-    ImageUploaderComponent
+    UserProfileComponent
       ],
   imports: [
     BrowserModule,
@@ -35,6 +35,7 @@ import { ImageUploaderComponent } from './components/image-uploader/image-upload
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ImageUploaderModule,
     ModalModule.forRoot()
   ],
   providers: [AuthGuard, authInterceptorProviders],

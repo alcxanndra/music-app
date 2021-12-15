@@ -1,7 +1,7 @@
 export class Artist{
     id: number;
     name: string;
-    imageUrl: string;
+    imageUrl: string | ArrayBuffer;
 
   constructor(
     id: number,

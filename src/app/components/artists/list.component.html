@@ -15,7 +15,7 @@
                 <!-- loop over the collection of artists -->
                 <div *ngFor="let tempArtist of artists" class="col-md-3">
                     <div class="card border-0 shadow">
-                            <img src="{{ tempArtist.imageUrl }}" style="width:100%;" class="card-img-top img-fluid shadow">
+                            <img src="{{ tempArtist.imageUrl }}" style="width:250px;height:250px" class="card-img-top img-fluid shadow">
                         <div class="card-body text-center" style="height:170px;">
 
                             <a routerLink="/artists/{{ tempArtist.id }}">

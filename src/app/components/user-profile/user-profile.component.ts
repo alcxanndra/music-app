@@ -97,7 +97,7 @@ export class UserProfileComponent implements OnInit {
         this.clicked = true;
 
         let uploadUrl = `${profileImageUploadUrl}/${this.id}/profileImage`;
-        this.uploadService.pushFileToStorage(this.currentFileUpload.file, uploadUrl)
+        this.uploadService.pushFileToStorage(this.currentFileUpload.file, uploadUrl, this.id.toString())
             .subscribe(event => this.handleEvent(event),
                 err => this.handleError(err));
     }

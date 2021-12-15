@@ -8,9 +8,13 @@ export class UploadFileService {
 
     constructor(private handler: HttpHandler) { }
 
-    pushFileToStorage(file: File, url: string): Observable<HttpEvent<{}>> {
+    pushFileToStorage(file: File, url: string, id: string): Observable<HttpEvent<{}>> {
         const data: FormData = new FormData();
         data.append('file', file);
+
+        if (id !== null){
+            data.append('id', id);
+        }
 
         const newRequest = new HttpRequest('POST', url, data);
 

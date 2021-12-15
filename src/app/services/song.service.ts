@@ -13,6 +13,13 @@ export class SongService {
 
   constructor(private http: HttpClient) { }
 
+  public fetchImage(songId: string): Observable<Blob> {
+    let url = `http://localhost:8080/uploads/songs/${songId}`;
+    console.log("Song image URL is " + url);
+
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
   public getAllSongs(): Observable<Song[]> {
     return this.http.get<Song[]>(`${this.apiServerUrl}`);
   }
