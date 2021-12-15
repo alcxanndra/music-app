@@ -66,7 +66,7 @@
 
       <div class="form-group col-9">
         <label>Location</label>
-        <input type="text" [attr.disabled]="!isEditMode ? '' : null" id="location" placeholder="Where can we find you?" formControlName="description" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['location'].errors }" />
+        <input type="text" [attr.disabled]="!isEditMode ? '' : null" id="location" placeholder="Where can we find you?" formControlName="location" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['location'].errors }" />
         <div *ngIf="submitted && f['location'].errors" class="invalid-feedback">
         </div>
       </div>
