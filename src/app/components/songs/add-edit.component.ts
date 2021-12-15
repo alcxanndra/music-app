@@ -14,8 +14,11 @@ import { GenreService } from 'src/app/services/genre.service';
 import { ProducerService } from 'src/app/services/producer.service';
 import { SongService } from 'src/app/services/song.service';
 import { SongdetailsService } from 'src/app/services/songdetails.service';
+import { UploadedImage } from 'src/app/models/uploaded-image';
+import { ImageService } from 'src/app/services/image.service';
+import { UploadFileService } from 'src/app/services/file-upload.service';
 
-
+const songImageUploadUrl: string = 'http://localhost:8080/uploads/songs';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -33,6 +36,11 @@ export class AddEditComponent implements OnInit {
     currentAlbum!: string;
     currentArtist!: string;
     songDetails!: SongDetails;
+    currentFileUpload!: any;
+    changeImage = false;
+    clicked: boolean = false;
+    imageError!: string;
+    imageToShow: any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -44,7 +52,9 @@ export class AddEditComponent implements OnInit {
         private genreService: GenreService,
         private artistService: ArtistService,
         private albumService: AlbumService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private imageService: ImageService,
+        private uploadService: UploadFileService
     ) {}
 
     ngOnInit() {
@@ -103,7 +113,47 @@ export class AddEditComponent implements OnInit {
                 this.currentProducer = this.songDetails.producer.name;
                 this.currentAlbum = this.songDetails.album.title;
             });
+
+            if (!this.isAddMode) {
+                this.songService.fetchImage(this.id.toString())
+                .subscribe(image => this.createImage(image),
+                err => this.handleImageRetrievalError(err));
+            }
         }
+
+        private handleImageRetrievalError(err: Error) {
+            console.error(err);
+            this.alertService.error("Problem retrieving profile photo.");
+        }
+
+        onUploadedImage(image: UploadedImage) {
+            this.imageError = this.imageService.validateImage(image);
+    
+            if (!this.imageError) {
+                this.currentFileUpload = image;
+            }
+        }
+    
+        private createImage(image: Blob) {
+            if (image && image.size > 0) {
+              let reader = new FileReader();
+        
+              reader.addEventListener("load", () => {
+                this.imageToShow = reader.result;
+              }, false);
+        
+              reader.readAsDataURL(image);
+            } 
+        }
+
+
+    updateOrCreateSong(){
+        if (this.isAddMode) {
+            this.createSong();
+        } else {
+            this.updateSong();
+        }
+    }
 
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }

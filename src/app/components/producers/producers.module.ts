@@ -6,12 +6,14 @@ import { ProducersRoutingModule } from './producers-routing.module';
 import { LayoutComponent } from './layout.component';
 import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
+import { ImageUploaderModule } from '../image-uploader/image-uploader.module';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        ProducersRoutingModule
+        ProducersRoutingModule,
+        ImageUploaderModule
     ],
     declarations: [
         LayoutComponent,
