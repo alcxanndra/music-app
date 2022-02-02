@@ -2,7 +2,7 @@
 <h1 *ngIf="!isAddMode">Edit Song</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div>
+    <div *ngIf="isAddMode">
         <app-image-uploader [image]="imageToShow" [isEditMode]="true"
         (uploadedImage)="onUploadedImage($event)"></app-image-uploader>
     </div>
@@ -45,8 +45,8 @@
                     {{album['title']}}
                 </option>
             </select>
-            <div *ngIf="submitted && f['genre'].errors" class="invalid-feedback">
-                <div *ngIf="f['genre'].errors['required']">Genre is required</div>
+            <div *ngIf="submitted && f['album'].errors" class="invalid-feedback">
+                <div *ngIf="f['album'].errors['required']">Album is required</div>
             </div>
         </div>
         <div class="form-group col-5">

@@ -7,6 +7,7 @@ export class AuthGuard implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
   canActivate(): boolean {
     if (!this.auth.isAuthenticated()) {
+      window.alert("You don't have permission to view this page"); 
       this.router.navigate(['login']);
       return false;
     }

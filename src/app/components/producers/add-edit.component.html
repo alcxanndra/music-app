@@ -2,7 +2,7 @@
 <h1 *ngIf="!isAddMode">Edit Producer</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div>
+    <div *ngIf="isAddMode">
         <app-image-uploader [image]="imageToShow" [isEditMode]="true"
         (uploadedImage)="onUploadedImage($event)"></app-image-uploader>
     </div>

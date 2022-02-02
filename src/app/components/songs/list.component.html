@@ -1,11 +1,11 @@
 <h1 class="display-1">Songs</h1>
 <p>“Music produces a kind of pleasure which human nature cannot do without.” </p>
 
-<div class="add-option">
+<!-- <div class="add-option">
 <button routerLink="add" class="btn btn-primary btn-round">
     <i class="tim-icons icon-simple-add"></i> Add Song
 </button>
-</div>
+</div> -->
 
 <div class="main-content">
     <div class="section-content section-content-p30">
@@ -31,9 +31,7 @@
 
 
                             <div style="white-space: nowrap">
-                                <a routerLink="edit/{{tempSong.id}}" class="btn btn-sm btn-primary mr-1">
-                                    <i class="tim-icons icon-pencil"></i></a>
-                                <button (click)="playStream(tempSong.id)" [disabled]="state?.error" *ngIf="!state?.playing || (state?.playing && currentPlaying !== tempSong.id)" class="btn btn-sm btn-play-song">
+                                <button (click)="playStream(tempSong.id)" [disabled]="state?.error" *ngIf="!state?.playing || (state?.playing && currentPlaying !== tempSong.id)" class="btn btn-sm btn-primary btn-play-song">
                                     <i class="tim-icons icon-triangle-right-17" *ngIf="currentPlaying !== tempSong.id"></i>
                                     <i class="tim-icons icon-refresh-01" *ngIf="!state?.playing && paused === true && currentPlaying === tempSong.id"></i>
 
