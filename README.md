@@ -1,5 +1,7 @@
 # MusicApp
 
+This project was made for the Advanced Front End Class at University of Bucharest by Caldaruse Bianca Alexandra, group 344.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
 
 ## Development server
